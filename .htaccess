@@ -1,0 +1,28 @@
+# TreeSheets Web - Apache configuration
+Options -Indexes
+DirectoryIndex index.php
+
+# Never serve the database, backups or internal files directly.
+<FilesMatch "\.(sqlite|sqlite-wal|sqlite-shm|sqlite-journal|db|cts|md|txt|json|lock|sess)$">
+    Require all denied
+</FilesMatch>
+<FilesMatch "^manifest\.webmanifest$">
+    Require all granted
+</FilesMatch>
+<IfModule mod_mime.c>
+    AddType application/manifest+json .webmanifest
+    AddType image/svg+xml .svg
+    AddType text/javascript .js
+</IfModule>
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(data|lib|examples)(/|$) - [F,L]
+</IfModule>
+
+# Always revalidate scripts/styles so updates take effect (ES modules import each other
+# without version query strings).
+<IfModule mod_headers.c>
+    <FilesMatch "\.(js|css|webmanifest)$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+</IfModule>
