@@ -1,5 +1,7 @@
 # TreeSheets Web
 
+Disclaimer: This is an entirely AI (Claude opus 5.5) port of TreeSheets.
+
 A self-hosted, password-protected web version of [TreeSheets](https://strlen.com/treesheets/) —
 the free-form hierarchical information organizer (a mix of spreadsheet, mind map, outliner and
 notes) by Wouter van Oortmerssen. Built with **PHP + SQLite** and plain JavaScript (no build
